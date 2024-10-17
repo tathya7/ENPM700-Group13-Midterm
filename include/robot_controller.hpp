@@ -37,18 +37,7 @@ class RobotController {
    */
   RobotController(const std::pair<double, double>& start_position, double max_speed);
 
-  /**
-   * @brief Set the target position for the robot
-   * 
-   * @param target Target position
-   */
   void set_target_position(const std::pair<double, double>& target);
 
-  /**
-   * @brief Move the robot towards the target while avoiding obstacles
-   * 
-   * @param is_avoidance_required Flag indicating if avoidance is necessary
-   * @return std::pair<double, double> New position of the robot
-   */
   std::pair<double, double> move_robot(bool is_avoidance_required);
 };
