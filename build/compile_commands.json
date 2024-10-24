@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/libs/lib1",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/libs/lib1/. -std=gnu++14 -o CMakeFiles/myLib1.dir/src.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/libs/lib1/src.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/libs/lib1/src.cpp"
+},
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/libs/lib2",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/libs/lib2/. -std=gnu++14 -o CMakeFiles/myLib2.dir/src.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/libs/lib2/src.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/libs/lib2/src.cpp"
+},
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/app",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/include -isystem /usr/include/opencv4 -std=gnu++14 -o CMakeFiles/shell-app.dir/main.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/app/main.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/app/main.cpp"
+},
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/app",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/include -isystem /usr/include/opencv4 -std=gnu++14 -o CMakeFiles/shell-app.dir/detector.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/app/detector.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/app/detector.cpp"
+},
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/app",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/include -isystem /usr/include/opencv4 -std=gnu++14 -o CMakeFiles/shell-app.dir/stream_data.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/app/stream_data.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/app/stream_data.cpp"
+},
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/test",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/include -I/home/tathyab/ENPM700-Group13-Midterm/libs/lib1/. -I/home/tathyab/ENPM700-Group13-Midterm/libs/lib2/. -isystem /home/tathyab/ENPM700-Group13-Midterm/build/_deps/googletest-src/googletest/include -isystem /home/tathyab/ENPM700-Group13-Midterm/build/_deps/googletest-src/googletest -std=gnu++14 -o CMakeFiles/cpp-test.dir/main.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/test/main.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/test/main.cpp"
+},
+{
+  "directory": "/home/tathyab/ENPM700-Group13-Midterm/build/test",
+  "command": "/usr/bin/c++  -I/home/tathyab/ENPM700-Group13-Midterm/include -I/home/tathyab/ENPM700-Group13-Midterm/libs/lib1/. -I/home/tathyab/ENPM700-Group13-Midterm/libs/lib2/. -isystem /home/tathyab/ENPM700-Group13-Midterm/build/_deps/googletest-src/googletest/include -isystem /home/tathyab/ENPM700-Group13-Midterm/build/_deps/googletest-src/googletest -std=gnu++14 -o CMakeFiles/cpp-test.dir/test.cpp.o -c /home/tathyab/ENPM700-Group13-Midterm/test/test.cpp",
+  "file": "/home/tathyab/ENPM700-Group13-Midterm/test/test.cpp"
+}
+]
