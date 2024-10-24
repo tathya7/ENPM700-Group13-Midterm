@@ -2,6 +2,11 @@
 # Human Detection and Tracking using YOLO and DeepSORT
 ### ENPM700 - Mohammed Munawwar and Tathya Bhatt
 
+[![codecov](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm/graph/badge.svg?token=2W1XS59EG6)](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm)
+
+# Midterm Project
+
+
 This is the Phase-1 Submission of the project. The AIP process was followed using product backlog given in this [Sheet](https://docs.google.com/spreadsheets/d/1zITtZFIbhi-VyhSFAzy4M6afBLeduHdxMXDktULzxks/edit?usp=sharing).
 
 

@@ -7,6 +7,7 @@
 #include "opencv2/core/mat.hpp"
 #include "opencv2/core/utility.hpp"
 
+
 /**
  * @brief Class for detecting humans in images using a specified model.
  */
@@ -44,6 +45,24 @@ class Detector {
          * @param classes A vector of class names.
          * @param uniq_id A unique identifier for the detected object.
          */
+class Detector{
+    private:
+
+        // Attribute for width of image
+        int fwidth;
+        // Attribute for height of image
+        int fheight;
+        // Attribute for nms threshold
+        float nmsthresh;
+        // Attribute for confidence threshold
+        float confidenceThresh;
+
+        float score_threshold;
+
+
+    public:
+        Detector();
+
         void drawBbox(int classid,
                       float confidence,
                       int left,
@@ -66,4 +85,12 @@ class Detector {
          * 
          */
         void detect(cv::CommandLineParser parser);
+};
+
+        cv::Mat rmOverlap(cv::Mat &frame,
+                        std::vector<cv::Mat> &out_img,
+                        std::vector<std::string> &classes);
+
+        void detect(cv::CommandLineParser parser);
+
 };

@@ -14,14 +14,13 @@ class StreamData {
 
     int frame_width;
     int frame_height;
-    
 
     public:
-
     // To store the input image path
     std::string image_path;
     cv::Mat frame;
 
+    public:
     // Initializing default constructor 
     StreamData();
 
@@ -43,4 +42,5 @@ class StreamData {
     cv::Mat ImgProcessor(char);
 
     ~StreamData();
+};
 };
