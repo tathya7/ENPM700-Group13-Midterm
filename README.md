@@ -2,8 +2,6 @@
 # Human Detection and Tracking using YOLO and DeepSORT
 ### ENPM700 - Mohammed Munawwar and Tathya Bhatt
 
-[![codecov](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm/graph/badge.svg?token=2W1XS59EG6)](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm)
-
 # Midterm Project
 
 
@@ -14,7 +12,7 @@ This is the Phase-1 Submission of the project. The AIP process was followed usin
 
 ```bash
 # Download the code:
-  git clone https://github.com/tathya7/ENPM700-Group13-Midterm.git
+  git clone https://github.com/mun0404/ENPM700-Group13-Midterm.git
   cd ENPM700-Group13-Midterm
 # Configure the project and generate a native build system:
   # Must re-run this command whenever any CMakeLists.txt file has been changed.
