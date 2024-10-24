@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm/graph/badge.svg?token=2W1XS59EG6)](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm)
+
 # Midterm Project
 
 ENPM808X - Mohammed Munawwar and Tathya Bhatt
