@@ -1,10 +1,11 @@
-# Midterm Project
+# Human Detection and Tracking using YOLO and DeepSORT
 
-ENPM808X - Mohammed Munawwar and Tathya Bhatt
+ENPM700 - Mohammed Munawwar and Tathya Bhatt
 
-# Human Detection and Avoidance
 
 Phase 0 video: [Link](https://drive.google.com/file/d/1VtF8H3G0kN9BVF_SDWpRZ3BodRa7rdug/view?usp=sharing)<br>
+
+
 
 
 ## Standard install via command-line
