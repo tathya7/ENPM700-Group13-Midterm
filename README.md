@@ -1,21 +1,16 @@
 [![codecov](https://codecov.io/gh/tathya7/ENPM700-Group13-Midterm/graph/badge.svg?token=8q9D5e03Sl)](https://codecov.io/gh/tathya7/ENPM700-Group13-Midterm)
-
 # Human Detection and Tracking using YOLO and DeepSORT
+### ENPM700 - Mohammed Munawwar and Tathya Bhatt
 
-ENPM700 - Mohammed Munawwar and Tathya Bhatt
-
-
-Phase 0 video: [Link](https://drive.google.com/file/d/1VtF8H3G0kN9BVF_SDWpRZ3BodRa7rdug/view?usp=sharing)<br>
+This is the Phase-1 Submission of the project. The AIP process was followed using product backlog given in this [Sheet](https://docs.google.com/spreadsheets/d/1zITtZFIbhi-VyhSFAzy4M6afBLeduHdxMXDktULzxks/edit?usp=sharing).
 
 
-
-
-## Standard install via command-line
+## Building and Running the code
 
 ```bash
 # Download the code:
-  git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2
-  cd cpp-boilerplate-v2
+  git clone https://github.com/tathya7/ENPM700-Group13-Midterm.git
+  cd ENPM700-Group13-Midterm
 # Configure the project and generate a native build system:
   # Must re-run this command whenever any CMakeLists.txt file has been changed.
   cmake -S ./ -B build/
@@ -27,11 +22,7 @@ Phase 0 video: [Link](https://drive.google.com/file/d/1VtF8H3G0kN9BVF_SDWpRZ3Bod
   # to see verbose output, do:
   cmake --build build/ --verbose
 # Run program:
-  ./build/app/shell-app
-# Run tests:
-  cd build/; ctest; cd -
-  # or if you have newer cmake
-  ctest --test-dir build/
+  ./build/app/shell-app /path/to/test_image.jpeg
 # Build docs:
   cmake --build build/ --target docs
   # open a web browser to browse the doc
