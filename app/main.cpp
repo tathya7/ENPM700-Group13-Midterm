@@ -42,11 +42,5 @@ int main(int argc, char** argv) {
    */
   detection.detect(parser);
 
-  /**
-   * @brief Starting the detection algorithm
-   *
-   */
-  detection.detect(parser);
-
   return 0;
 }
