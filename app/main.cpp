@@ -12,8 +12,7 @@ int main(int argc, char** argv) {
     HumanDetector detection;
 
     while (1) {
-     std::vector<cv::Mat> outs = detection.detect(camera_device);
-     std::cout<<outs.size()<<std::endl;
+     detection.detect(camera_device);
      }
 
     return 0;
