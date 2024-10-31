@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
   HumanDetector detection;
 
   while (1) {
-    detection.detect(camera_device);
+    detection.detect(camera_device, false);
   }
 
   return 0;

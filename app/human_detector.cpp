@@ -261,94 +261,93 @@ cv::Mat HumanDetector::rmOverlap(cv::Mat &input_frame, cv::Size &img,
  * exit.
  *
  */
-void HumanDetector::detect(std::string &input_source) {
-  cv::VideoCapture cap(input_source);
-  cv::Mat frame, blob_img;
-  bool is_img = false;
+void HumanDetector::detect(std::string &input_source, bool is_test_mode = false) {
+    cv::VideoCapture cap(input_source);
+    cv::Mat frame, blob_img;
+    bool is_img = false;
 
-  if (input_source.find("dev/video0") != std::string::npos) {
-    cap.open(0);
+    if (input_source.find("dev/video0") != std::string::npos) {
+        cap.open(0);
+    } else if (input_source.find(".jpeg") != std::string::npos ||
+               input_source.find(".jpg") != std::string::npos ||
+               input_source.find(".png") != std::string::npos) {
+        frame = cv::imread(input_source);
+        is_img = true;
+    } else {
+        cap.open(input_source);
+    }
 
-  } else if (input_source.find(".jpeg") != std::string::npos ||
-             input_source.find(".jpg") != std::string::npos ||
-             input_source.find(".png") != std::string::npos) {
-    frame = cv::imread(input_source);
-    is_img = true;
+    if (!is_img && !cap.isOpened()) {
+        std::cout << "Error opening input image" << std::endl;
+        return;
+    }
 
-  } else {
-    cap.open(input_source);
-  }
-
-  if (!is_img && !cap.isOpened()) {
-    std::cout << "Error opening input image" << std::endl;
-    // return;
-  }
-
-  if (!is_img) {
-    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
-    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
-  }
-
-  std::vector<std::string> classes;
-  std::string class_path = "../../models/coco.names";
-  std::string model_path = "../../models/yolov5s.onnx";
-
-  // Read class names from the file
-  std::ifstream read_input(class_path);
-  std::string text;
-  while (read_input >> text) {
-    getline(read_input, text);
-    classes.push_back(text);
-  }
-
-  // Load the YOLO model
-  cv::dnn::Net yolo_model = cv::dnn::readNet(model_path);
-
-  HumanDetector input;  // Ensure StreamData is defined and accessible
-  cv::VideoCapture capture;
-
-  while (1) {
     if (!is_img) {
-      frame = input.ImgProcessor(cap);
+        cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+        cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     }
 
-    cv::Mat input_img = frame;
+    std::vector<std::string> classes;
+    std::string class_path = "../../models/coco.names";
+    std::string model_path = "../../models/yolov5s.onnx";
 
-    // Prepare the image for the model
-    cv::dnn::blobFromImage(input_img, blob_img, 1 / 255.0,
-                           cv::Size(yolo_width, yolo_height), cv::Scalar(),
-                           true, false);
-
-    // Set the input to the model
-    yolo_model.setInput(blob_img);
-
-    std::vector<cv::Mat> out_imgs;
-    std::vector<cv::Mat> detections;
-    yolo_model.forward(out_imgs, yolo_model.getUnconnectedOutLayersNames());
-
-    // detections = out_imgs;
-
-    cv::Size frame_size = cv::Size(input_img.cols, input_img.rows);
-
-    // Call the method to remove overlaps
-    cv::Mat final_img = rmOverlap(input_img, frame_size, out_imgs, classes);
-
-    // Performance measurement
-    std::vector<double> layer_time;
-    double freq = cv::getTickFrequency() / 1000;
-    double time = yolo_model.getPerfProfile(layer_time) / freq;
-    std::string label = cv::format("Inference time: %.2f ms", time);
-    cv::putText(final_img, label, cv::Point(0, 15), cv::FONT_HERSHEY_SIMPLEX,
-                0.5, cv::Scalar(0, 0, 255));
-
-    // Display the result
-    cv::imshow("Human Detection", final_img);
-    char c = static_cast<char>(cv::waitKey(25));
-    if (c == 27 || c == 'q') {  // 27 is the ASCII code for 'Esc'
-      break;
+    // Read class names from the file
+    std::ifstream read_input(class_path);
+    std::string text;
+    while (read_input >> text) {
+        getline(read_input, text);
+        classes.push_back(text);
     }
-  }
 
-  cap.release();
-  cv::destroyAllWindows();
+    // Load the YOLO model
+    cv::dnn::Net yolo_model = cv::dnn::readNet(model_path);
+
+    HumanDetector input;  // Ensure StreamData is defined and accessible
+
+    while (1) {
+        if (!is_img) {
+            frame = input.ImgProcessor(cap);
+        }
+
+        cv::Mat input_img = frame;
+
+        // Prepare the image for the model
+        cv::dnn::blobFromImage(input_img, blob_img, 1 / 255.0,
+                               cv::Size(yolo_width, yolo_height), cv::Scalar(),
+                               true, false);
+
+        // Set the input to the model
+        yolo_model.setInput(blob_img);
+
+        std::vector<cv::Mat> out_imgs;
+        yolo_model.forward(out_imgs, yolo_model.getUnconnectedOutLayersNames());
+
+        cv::Size frame_size = cv::Size(input_img.cols, input_img.rows);
+
+        // Call the method to remove overlaps
+        cv::Mat final_img = rmOverlap(input_img, frame_size, out_imgs, classes);
+
+        // Performance measurement
+        std::vector<double> layer_time;
+        double freq = cv::getTickFrequency() / 1000;
+        double time = yolo_model.getPerfProfile(layer_time) / freq;
+        std::string label = cv::format("Inference time: %.2f ms", time);
+        cv::putText(final_img, label, cv::Point(0, 15), cv::FONT_HERSHEY_SIMPLEX,
+                    0.5, cv::Scalar(0, 0, 255));
+
+        // Only display the result if not in test mode
+        if (!is_test_mode) {
+            cv::imshow("Human Detection", final_img);
+            char c = static_cast<char>(cv::waitKey(25));
+            if (c == 27 || c == 'q') {  // 'Esc' or 'q' to quit
+                break;
+            }
+        } else {
+            // In test mode, process one frame and exit
+            break;
+        }
+    }
+
+    cap.release();
+    cv::destroyAllWindows();
 }

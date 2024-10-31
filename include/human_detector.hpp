@@ -93,7 +93,7 @@ class HumanDetector {
    * @param input_source Reference to the string containing the input source
    * path
    */
-  void detect(std::string &input_source);
+  void detect(std::string &input_source, bool is_test_mode);
 
   ~HumanDetector();
 };
