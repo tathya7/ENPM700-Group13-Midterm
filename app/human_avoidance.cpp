@@ -1,3 +1,13 @@
+/**
+ * @file human_avoidance.cpp
+ * @author Mohammed Munawwar (mmunawwa@umd.edu)
+ * @brief Adding the avoidance functionality after detecting humans
+ * @version 1.0
+ * @date 2024-10-29
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 #include "../include/human_avoidance.hpp"
 
 #include <vector>

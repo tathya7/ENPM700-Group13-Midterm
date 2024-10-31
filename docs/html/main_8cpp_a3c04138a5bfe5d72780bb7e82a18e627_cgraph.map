@@ -1,0 +1,8 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node2" href="$classHumanDetector.html#aad878ef013d488473dd0756ed32aeb02" title="Perform human detection on the input source." alt="" coords="108,31,283,57"/>
+<area shape="rect" id="node3" href="$classHumanDetector.html#a6bd330e752f0711e6967834f9f90c336" title="Process the input frame for human detection." alt="" coords="331,5,552,32"/>
+<area shape="rect" id="node4" href="$classHumanDetector.html#a4e6de049f1615840f098aa69a60291fb" title="Remove overlapping bounding boxes." alt="" coords="340,56,543,83"/>
+<area shape="rect" id="node5" href="$classHumanAvoidance.html#a61c92ab730e3aaedb07a9efc86521296" title="Calculates the distance of a detected human from the camera." alt="" coords="616,19,819,61"/>
+<area shape="rect" id="node6" href="$classHumanAvoidance.html#a9d484fd9d212adb28ef5c19969f12605" title="Transforms human coordinates from camera to robot coordinate system." alt="" coords="600,85,835,112"/>
+</map>

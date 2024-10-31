@@ -1,3 +1,13 @@
+/**
+ * @file test.cpp
+ * @author Tathya Bhatt (tathyab@umd.edu)
+ * @brief Main app which does the actualizaiton
+ * @version 1.0
+ * @date 2024-10-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 #include <iostream>
 #include <ostream>
 #include <opencv2/core/mat.hpp>

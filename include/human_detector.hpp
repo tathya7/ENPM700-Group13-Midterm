@@ -1,3 +1,13 @@
+/**
+ * @file human_detector.hpp
+ * @author Mohammed Munawwar (mmunawwa@umd.edu)
+ * @brief Detection code implementation to get the output result of the algorithm
+ * @version 1.0
+ * @date 2024-10-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 #pragma once
 
 #include <array>

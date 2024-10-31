@@ -1,3 +1,13 @@
+/**
+ * @file human_detector.cpp
+ * @author Tathya Bhatt (tathyab@umd.edu)
+ * @brief Adding the detection and tracking functionality for the application
+ * @version 1.0
+ * @date 2024-10-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 
 #include "../include/human_detector.hpp"
 

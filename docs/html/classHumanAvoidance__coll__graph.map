@@ -1,0 +1,5 @@
+<map id="HumanAvoidance" name="HumanAvoidance">
+<area shape="rect" id="node1" title="A class for human avoidance functionality." alt="" coords="5,145,177,267"/>
+<area shape="rect" id="node2" title=" " alt="" coords="15,5,53,83"/>
+<area shape="rect" id="node3" title=" " alt="" coords="78,5,219,83"/>
+</map>

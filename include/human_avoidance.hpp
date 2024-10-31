@@ -1,3 +1,13 @@
+/**
+ * @file human_avoidance.hpp
+ * @author  Mohammed Munawwar (mmunawwa@umd.edu)
+ * @brief Stub implementation for avoidance warning functionality
+ * @version 1.0
+ * @date 2024-10-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 #pragma once
 
 #include <array>

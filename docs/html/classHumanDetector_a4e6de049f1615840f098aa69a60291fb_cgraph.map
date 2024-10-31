@@ -1,0 +1,5 @@
+<map id="HumanDetector::rmOverlap" name="HumanDetector::rmOverlap">
+<area shape="rect" id="node1" title="Remove overlapping bounding boxes." alt="" coords="5,42,208,69"/>
+<area shape="rect" id="node2" href="$classHumanAvoidance.html#a61c92ab730e3aaedb07a9efc86521296" title="Calculates the distance of a detected human from the camera." alt="" coords="272,5,475,47"/>
+<area shape="rect" id="node3" href="$classHumanAvoidance.html#a9d484fd9d212adb28ef5c19969f12605" title="Transforms human coordinates from camera to robot coordinate system." alt="" coords="256,71,491,98"/>
+</map>

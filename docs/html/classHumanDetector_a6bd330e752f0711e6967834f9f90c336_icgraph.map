@@ -1,0 +1,5 @@
+<map id="HumanDetector::ImgProcessor" name="HumanDetector::ImgProcessor">
+<area shape="rect" id="node1" title="Process the input frame for human detection." alt="" coords="331,5,552,32"/>
+<area shape="rect" id="node2" href="$classHumanDetector.html#aad878ef013d488473dd0756ed32aeb02" title="Perform human detection on the input source." alt="" coords="108,5,283,32"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
