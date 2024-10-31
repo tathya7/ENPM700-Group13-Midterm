@@ -1,52 +1,29 @@
+/**
+ * @file test.cpp
+ * @author Tathya Bhatt (tathyab@umd.edu)
+ * @brief Main app which does the actualizaiton
+ * @version 1.0
+ * @date 2024-10-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 #include <iostream>
+#include <ostream>
+#include <opencv2/core/mat.hpp>
 #include <opencv2/opencv.hpp>
-#include <detector.hpp>
 
-
-/**
- * @brief Command line options for the application.
- * 
- * Usage examples:
- * \code{.cpp}
- * ./app/app --image=../input/1.png
- * ./app/app --video=../input/video.mp4
- * \endcode
- */
-
-const char* keys =
-    "{help h usage ? | | Usage examples: "
-    "\n\t\t./app/app --image=../input/1.png"
-    "\n\t\t./app/app --video=../input/video.mp4}"
-    "{image img||input image}";
-
-
-/**
- * @brief Main function to start the detection process.
- * 
- * @param argc Argument count.
- * @param argv Argument vector.
- * @return int Exit status of the program.
- */
+#include "human_avoidance.hpp"
+#include "human_detector.hpp"
 
 int main(int argc, char** argv) {
-  Detector detection;
+  std::string camera_device = argv[1];
 
-  cv::CommandLineParser parser(argc, argv, keys);
-  if (parser.has("help")) {
-    parser.printMessage();
-    return 0;
+  HumanDetector detection;
+
+  while (1) {
+    detection.detect(camera_device);
   }
-  
-  /**
-   * @brief Starting the detection algorithm.
-   */
-  detection.detect(parser);
-
-  /**
-   * @brief Starting the detection algorithm
-   *
-   */
-  detection.detect(parser);
 
   return 0;
 }
