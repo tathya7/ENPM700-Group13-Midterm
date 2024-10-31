@@ -1,0 +1,8 @@
+<map id="HumanDetector" name="HumanDetector">
+<area shape="rect" id="node1" title="A class for detecting humans in images or video frames." alt="" coords="145,331,306,496"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,147,56,224"/>
+<area shape="rect" id="node3" title=" " alt="" coords="162,147,209,224"/>
+<area shape="rect" id="node4" title=" " alt="" coords="246,147,285,224"/>
+<area shape="rect" id="node5" title=" " alt="" coords="350,147,437,224"/>
+<area shape="rect" id="node6" title=" " alt="" coords="324,5,463,97"/>
+</map>

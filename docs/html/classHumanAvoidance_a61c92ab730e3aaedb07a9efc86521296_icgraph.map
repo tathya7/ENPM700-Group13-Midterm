@@ -1,0 +1,6 @@
+<map id="HumanAvoidance::calculate_distance" name="HumanAvoidance::calculate_distance">
+<area shape="rect" id="node1" title="Calculates the distance of a detected human from the camera." alt="" coords="581,5,784,47"/>
+<area shape="rect" id="node2" href="$classHumanDetector.html#a4e6de049f1615840f098aa69a60291fb" title="Remove overlapping bounding boxes." alt="" coords="331,13,533,39"/>
+<area shape="rect" id="node3" href="$classHumanDetector.html#aad878ef013d488473dd0756ed32aeb02" title="Perform human detection on the input source." alt="" coords="108,13,283,39"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
