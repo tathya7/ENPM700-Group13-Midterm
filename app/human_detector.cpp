@@ -290,8 +290,8 @@ void HumanDetector::detect(std::string &input_source) {
   }
 
   std::vector<std::string> classes;
-  std::string class_path = "./models/coco.names";
-  std::string model_path = "./models/yolov5s.onnx";
+  std::string class_path = "../../models/coco.names";
+  std::string model_path = "../../models/yolov5s.onnx";
 
   // Read class names from the file
   std::ifstream read_input(class_path);
