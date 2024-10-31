@@ -5,9 +5,7 @@
 #include <iostream>
 #include <ostream>
 
-
 #include <opencv4/opencv2/imgcodecs.hpp>
-
 #include "../include/human_avoidance.hpp"
 
 HumanAvoidance avoider;
@@ -65,17 +63,17 @@ cv::Mat HumanDetector::ImgProcessor(cv::VideoCapture &capture_frame) {
 }
 
 /**
-   * @brief Draw bounding box around detected human
-   * @param classid ID of the detected class
-   * @param confidence Confidence score of the detection
-   * @param left Left coordinate of the bounding box
-   * @param top Top coordinate of the bounding box
-   * @param right Right coordinate of the bounding box
-   * @param bottom Bottom coordinate of the bounding box
-   * @param frame Reference to the frame to draw on
-   * @param classes Vector of class names
-   * @param uniq_id Unique identifier for the detection
-   */
+ * @brief Draw bounding box around detected human
+ * @param classid ID of the detected class
+ * @param confidence Confidence score of the detection
+ * @param left Left coordinate of the bounding box
+ * @param top Top coordinate of the bounding box
+ * @param right Right coordinate of the bounding box
+ * @param bottom Bottom coordinate of the bounding box
+ * @param frame Reference to the frame to draw on
+ * @param classes Vector of class names
+ * @param uniq_id Unique identifier for the detection
+ */
 void HumanDetector::drawBbox(int classid, float confidence, int left, int top,
                              int right, int bottom, cv::Mat &frame,
                              const std::vector<std::string> &classes,
@@ -97,13 +95,13 @@ void HumanDetector::drawBbox(int classid, float confidence, int left, int top,
 }
 
 /**
-     * @brief Removes overlapped boxes based on NMS
-     * @param input_frame Reference to the input frame
-     * @param img Size of the image
-     * @param out_imgs Vector of output images from YOLO
-     * @param classes Lists of class names
-     * @return cv::Mat Processed image with non-overlapping bounding boxes
-     */
+ * @brief Removes overlapped boxes based on NMS
+ * @param input_frame Reference to the input frame
+ * @param img Size of the image
+ * @param out_imgs Vector of output images from YOLO
+ * @param classes Lists of class names
+ * @return cv::Mat Processed image with non-overlapping bounding boxes
+ */
 cv::Mat HumanDetector::rmOverlap(cv::Mat &input_frame, cv::Size &img,
                                  std::vector<cv::Mat> &out_imgs,
                                  std::vector<std::string> &classes) {
@@ -181,20 +179,26 @@ cv::Mat HumanDetector::rmOverlap(cv::Mat &input_frame, cv::Size &img,
         cv::Point(left + label_size.width, top + label_size.height + baseLine);
 
     // ______________________________________________________________________________________________________________________________________________
-    std::vector<float> robot_coord = avoider.camera2robot(box.height, box, boxed_img);
+    std::vector<float> robot_coord =
+        avoider.camera2robot(box.height, box, boxed_img);
 
-    std::string coordinates_label = "X = " + cv::format("%.2f", robot_coord[0]) + 
-                            " Y = " + cv::format("%.2f", robot_coord[1]) + 
-                            " Z = " + cv::format("%.2f", robot_coord[2]);
+    std::string coordinates_label =
+        "X = " + cv::format("%.2f", robot_coord[0]) +
+        " Y = " + cv::format("%.2f", robot_coord[1]) +
+        " Z = " + cv::format("%.2f", robot_coord[2]);
 
     cv::Point c_left = cv::Point(left + label_size.width + 105, top);
-    cv::Point c_right = cv::Point(left + label_size.width + 375, top + label_size.height + baseLine);
+    cv::Point c_right = cv::Point(left + label_size.width + 375,
+                                  top + label_size.height + baseLine);
 
     // Draw black rectangle for label background
     cv::rectangle(boxed_img, c_left, c_right, cv::Scalar(0, 0, 0), cv::FILLED);
     // Put the label on the rectangle
-    cv::putText(boxed_img, coordinates_label, cv::Point(left + label_size.width + 105, top + label_size.height), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
-    //______________________________________________________________________________________________________________________________________________
+    cv::putText(
+        boxed_img, coordinates_label,
+        cv::Point(left + label_size.width + 105, top + label_size.height),
+        cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
+    // ______________________________________________________________________________________________________________________________________________
 
     // --------------------------------------------------------------------------------------------------------------------------------
     double dist2human = avoider.calculate_distance(box.height, img.height);
@@ -237,12 +241,14 @@ cv::Mat HumanDetector::rmOverlap(cv::Mat &input_frame, cv::Size &img,
 /**
  * @brief Detection on the given input type of source
  *
- * This method processes an input source (image, video, or camera stream) to detect humans.
- * It handles different input types.
+ * This method processes an input source (image, video, or camera stream) to
+ * detect humans. It handles different input types.
  *
- * @param input_source Reference to a string containing the path to the input source
+ * @param input_source Reference to a string containing the path to the input
+ * source
  *
- * The method continues processing frames until the user presses 'Esc' or 'q' to exit.
+ * The method continues processing frames until the user presses 'Esc' or 'q' to
+ * exit.
  *
  */
 void HumanDetector::detect(std::string &input_source) {

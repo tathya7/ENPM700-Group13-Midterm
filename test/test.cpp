@@ -10,6 +10,7 @@
  */
 #include <gtest/gtest.h>
 #include <opencv2/core/hal/interface.h>
+
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -22,6 +23,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
+
 
 #include "human_avoidance.hpp"
 #include "human_detector.hpp"
@@ -45,7 +47,7 @@ class HumanDetectorTest : public ::testing::Test {
                   cv::Scalar(255, 255, 255), -1);
     classes = {"person", "car", "bicycle"};
   }
-   /**
+  /**
    * @brief Tear down the test fixture
    */
   void TearDown() override { delete detector; }
@@ -66,10 +68,10 @@ class HumanDetectorTest : public ::testing::Test {
 
 /**
  * @brief Test case for validating frame size and processing
- * 
+ *
  * This test checks if the ImgProcessor method of HumanDetector
  * correctly processes a valid input frame.
- * 
+ *
  * @test
  * - Creates a zero-filled frame and a test frame from a file
  * - Processes the test frame using ImgProcessor
@@ -89,10 +91,10 @@ TEST_F(HumanDetectorTest, ValidFrame) {
 
 /**
  * @brief Test case for verifying bounding box drawing
- * 
+ *
  * This test ensures that the rmOverlap method of HumanDetector
  * correctly draws bounding boxes on the input frame.
- * 
+ *
  * @test
  * - Calls rmOverlap with test inputs
  * - Compares the input and output frames
@@ -108,14 +110,14 @@ TEST_F(HumanDetectorTest, DrawBoxCheck) {
 
 /**
  * @brief Test fixture for HumanAvoidance class
- * 
+ *
  * This test suite contains unit tests for the HumanAvoidance class.
  */
 class HumanAvoidanceTest : public ::testing::Test {
  protected:
   /**
    * @brief Set up the test fixture
-   * 
+   *
    * Initializes a HumanAvoidance object and sets the box height.
    */
   void SetUp() override {
@@ -131,11 +133,11 @@ class HumanAvoidanceTest : public ::testing::Test {
 
 /**
  * @brief Test case for measuring height calculation
- * 
+ *
  * This test verifies the calculate_distance method of HumanAvoidance
  * by checking if it correctly calculates the height based on the
  * bounding box height and a given angle.
- * 
+ *
  * @test
  * - Calculates the height using calculate_distance
  * - Rounds the result to the nearest integer
@@ -149,10 +151,10 @@ TEST_F(HumanAvoidanceTest, MeasureHeight) {
 
 /**
  * @brief Test case for coordinate transformation
- * 
+ *
  * This test checks the camera2robot method of HumanAvoidance
  * to ensure it correctly transforms camera coordinates to robot coordinates.
- * 
+ *
  * @test
  * - Loads a test image
  * - Creates a bounding box

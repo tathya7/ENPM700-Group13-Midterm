@@ -16,13 +16,11 @@
  */
 class HumanAvoidance {
  private:
-
   const unsigned int averageHeight = 175;  // Average human height in cm
 
  public:
   int frame_id;
 
-  
   /**
    * @brief Default constructor for the class
    */
@@ -34,9 +32,9 @@ class HumanAvoidance {
    * @param box_h Height of the bounding box around the detected human
    * @param frame_h Input frame height
    * @return float The calculated distance in meters
-   */  
-   
-   float calculate_distance(int box_h, int frame_h);
+   */
+
+  float calculate_distance(int box_h, int frame_h);
 
   /**
    * @brief Transforms human coordinates from camera to robot coordinate system
@@ -44,10 +42,11 @@ class HumanAvoidance {
    * @param z Distance of the human from the camera
    * @param box Bounding box of the detected human in the camera frame
    * @param frame The current video frame
-   * @return std::vector<float> A vector containing the x, y, z coordinates in the robot's frame
-   */  
-   
-   std::vector<float> camera2robot(float z, cv::Rect box, cv::Mat frame);
+   * @return std::vector<float> A vector containing the x, y, z coordinates in
+   * the robot's frame
+   */
+
+  std::vector<float> camera2robot(float z, cv::Rect box, cv::Mat frame);
 
   ~HumanAvoidance();
 };

@@ -34,22 +34,22 @@ class HumanDetector {
 
  public:
   HumanDetector();
-  
+
   /**
    * @brief Get the path of the input image
    * @param imgpath Reference to the string containing the image path
    * @return std::string The image path
    */
-  std::string getImgPath(
-      std::string &imgpath);
-  
-   /**
+  std::string getImgPath(std::string &imgpath);
+
+  /**
    * @brief Process the input frame for human detection
-   * @param capture_frame Reference to the VideoCapture object containing the frame
+   * @param capture_frame Reference to the VideoCapture object containing the
+   * frame
    * @return cv::Mat Processed frame
    */
   cv::Mat ImgProcessor(cv::VideoCapture &capture_frame);
-  
+
   /**
    * @brief Draw bounding box around detected human
    * @param classid ID of the detected class
@@ -65,7 +65,7 @@ class HumanDetector {
   void drawBbox(int classid, float confidence, int left, int top, int right,
                 int bottom, cv::Mat &frame,
                 const std::vector<std::string> &classes, int uniq_id);
-  
+
   /**
    * @brief Remove overlapping bounding boxes
    * @param input_frame Reference to the input frame
@@ -77,10 +77,11 @@ class HumanDetector {
   cv::Mat rmOverlap(cv::Mat &input_frame, cv::Size &img,
                     std::vector<cv::Mat> &out_imgs,
                     std::vector<std::string> &classes);
-  
+
   /**
    * @brief Perform human detection on the input source
-   * @param input_source Reference to the string containing the input source path
+   * @param input_source Reference to the string containing the input source
+   * path
    */
   void detect(std::string &input_source);
 
