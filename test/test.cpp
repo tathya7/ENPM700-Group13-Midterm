@@ -1,119 +1,173 @@
-// #include <gtest/gtest.h>
-// // #include <gmock/gmock.h>
-// #include "../include/detector.hpp"
-// #include <opencv2/core.hpp>
-// #include <opencv2/imgproc.hpp>
-// #include <opencv2/dnn.hpp>
+/**
+ * @file test.cpp
+ * @author Tathya Bhatt (tathyab@umd.edu)
+ * @brief Unit tests implementation of different functionalities
+ * @version 1.0
+ * @date 2024-10-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+#include <gtest/gtest.h>
+#include <opencv2/core/hal/interface.h>
+#include <cmath>
+#include <iostream>
+#include <string>
+#include <vector>
 
-// // Test fixture for StreamData
-// // class StreamDataTest : public ::testing::Test {
-// // protected:
-// //     StreamData streamData;
-// // };
+#include <opencv2/core.hpp>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/types.hpp>
+#include <opencv2/dnn.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/videoio.hpp>
 
-// // Test for setImgPath
-// // TEST_F(StreamDataTest, SetImagePath) {
-// //     std::string testPath = "/home/tathyab/ENPM700-Group13-Midterm/test1.jpeg";
-// //     streamData.setImgPath(testPath);
-// //     ASSERT_EQ(testPath, streamData.image_path) << "The image path should be set correctly.";
-// // }
+#include "human_avoidance.hpp"
+#include "human_detector.hpp"
 
-// // Test for getImage with a valid path
-// // TEST_F(StreamDataTest, GetImage_ValidPath) {
-// //     std::string testImage = "test_image.jpg";
-// //     cv::CommandLineParser parser(0, nullptr, "{image|test_image.jpg|}");
-// //     std::string result = streamData.getImage(parser);
-// //     ASSERT_EQ(result, testImage) << "The returned image path should match the input.";
-// // }
+/**
+ * @brief Test fixture for HumanDetector class
+ */
 
-// // Test for getImage with an invalid path
-// // TEST_F(StreamDataTest, GetImage_InvalidPath) {
-// //     cv::CommandLineParser parser(0, nullptr, "{}");
-// //     std::string result = streamData.getImage(parser);
-// //     ASSERT_EQ(result, "Invalid Input") << "The returned result should indicate an invalid input.";
-// // }
+class HumanDetectorTest : public ::testing::Test {
+ protected:
+  /**
+   * @brief Setting up the test fixture
+   */
+  void SetUp() override {
+    detector = new HumanDetector();
+    singleImg = "/home/tathyab/midterm_703/ex3.jpeg";
 
-// // Test for ImgProcessor in read mode
-// // TEST_F(StreamDataTest, ImgProcessor_ReadMode) {
-// //     std::string testPath = "test_image.jpg";
-// //     streamData.setImgPath(testPath);
+    img_size = cv::Size(640, 480);
+    input_fr = cv::Mat::zeros(img_size, CV_8UC3);
+    cv::rectangle(input_fr, cv::Rect(100, 100, 200, 300),
+                  cv::Scalar(255, 255, 255), -1);
+    classes = {"person", "car", "bicycle"};
+  }
+   /**
+   * @brief Tear down the test fixture
+   */
+  void TearDown() override { delete detector; }
 
-// //     cv::Mat mockImage = cv::Mat::zeros(640, 480, CV_8UC3);
-// //     cv::imwrite(testPath, mockImage);
+  // Pointer to HumanDetector object
+  HumanDetector *detector;
+  // Path to a single test image
+  std::string singleImg;
+  // Input frame to test
+  cv::Mat input_fr;
+  // Size of the input image
+  cv::Size img_size;
+  // Output images from the detector
+  std::vector<cv::Mat> out_imgs;
+  // List of object classes
+  std::vector<std::string> classes;
+};
 
-// //     cv::Mat result = streamData.ImgProcessor('r');
-// //     ASSERT_FALSE(result.empty()) << "The image should be successfully read.";
+/**
+ * @brief Test case for validating frame size and processing
+ * 
+ * This test checks if the ImgProcessor method of HumanDetector
+ * correctly processes a valid input frame.
+ * 
+ * @test
+ * - Creates a zero-filled frame and a test frame from a file
+ * - Processes the test frame using ImgProcessor
+ * - Verifies the output frame dimensions (540x360)
+ */
+TEST_F(HumanDetectorTest, ValidFrame) {
+  cv::Mat zero_frame = cv::Mat::zeros(480, 640, CV_8UC3);
+  cv::VideoCapture test_frame;
 
-// //     std::remove(testPath.c_str());
-// // }
+  test_frame.open("/home/tathyab/midterm_703/ex1.jpg");
 
-// // Test fixture for Detector class
-// // class DetectorTest : public ::testing::Test {
-// // protected:
-// //     Detector detector;
-// //     cv::Mat frame;
-// //     std::vector<std::string> classes;
+  cv::Mat output_frame = detector->ImgProcessor(test_frame);
 
-// //     void SetUp() override {
-// //         frame = cv::Mat::zeros(640, 640, CV_8UC3);
-// //         classes = {"person", "bicycle", "car"};
-// //     }
-// // };
+  EXPECT_EQ(output_frame.cols, 540);
+  EXPECT_EQ(output_frame.rows, 360);
+}
 
-// // Test for drawBbox with valid input
-// // TEST_F(DetectorTest, DrawBbox_ValidInput) {
-// //     int classid = 0; // person
-// //     float confidence = 0.8;
-// //     int left = 50, top = 50, right = 150, bottom = 150;
-// //     int person_id = 1;
+/**
+ * @brief Test case for verifying bounding box drawing
+ * 
+ * This test ensures that the rmOverlap method of HumanDetector
+ * correctly draws bounding boxes on the input frame.
+ * 
+ * @test
+ * - Calls rmOverlap with test inputs
+ * - Compares the input and output frames
+ * - Expects the frames to be different (non-zero difference)
+ */
+TEST_F(HumanDetectorTest, DrawBoxCheck) {
+  cv::Mat result = detector->rmOverlap(input_fr, img_size, out_imgs, classes);
 
-// //     detector.drawBbox(classid, confidence, left, top, right, bottom, frame, classes, person_id);
+  cv::Mat diff;
+  cv::absdiff(input_fr, result, diff);
+  EXPECT_GT(cv::countNonZero(diff), 0);
+}
 
-// //     cv::Vec3b color = frame.at<cv::Vec3b>(75, 75);
-// //     ASSERT_EQ(color[0], 50) << "The bounding box color should be detected.";
-// // }
+/**
+ * @brief Test fixture for HumanAvoidance class
+ * 
+ * This test suite contains unit tests for the HumanAvoidance class.
+ */
+class HumanAvoidanceTest : public ::testing::Test {
+ protected:
+  /**
+   * @brief Set up the test fixture
+   * 
+   * Initializes a HumanAvoidance object and sets the box height.
+   */
+  void SetUp() override {
+    avoider = new HumanAvoidance();
+    box_height = 35;
+  }
 
-// // Test rmOverlap method for removing overlaps
-// // TEST_F(DetectorTest, RmOverlap_RemovesOverlapsCorrectly) {
-// //     cv::Mat input_img = cv::Mat::ones(640, 640, CV_8UC3);
-// //     std::vector<cv::Mat> out_imgs;
-// //     std::vector<std::string> classes = {"person", "car"};
+  void TearDown() override { delete avoider; }
 
-// //     cv::Mat detection = cv::Mat::zeros(25200, 85, CV_32F);
-// //     detection.at<float>(0, 4) = 0.5;
-// //     detection.at<float>(0, 0) = 0.5;
-// //     detection.at<float>(0, 1) = 0.5;
-// //     detection.at<float>(0, 2) = 0.1;
-// //     detection.at<float>(0, 3) = 0.1;
-// //     out_imgs.push_back(detection);
+  HumanAvoidance *avoider;
+  int box_height;
+};
 
-// //     cv::Mat result = detector.rmOverlap(input_img, out_imgs, classes);
-// //     ASSERT_FALSE(result.empty()) << "The resulting image should not be empty after processing.";
-// // }
+/**
+ * @brief Test case for measuring height calculation
+ * 
+ * This test verifies the calculate_distance method of HumanAvoidance
+ * by checking if it correctly calculates the height based on the
+ * bounding box height and a given angle.
+ * 
+ * @test
+ * - Calculates the height using calculate_distance
+ * - Rounds the result to the nearest integer
+ * - Expects the calculated height to be 1
+ */
+TEST_F(HumanAvoidanceTest, MeasureHeight) {
+  float calculated_height = avoider->calculate_distance(box_height, 40);
+  calculated_height = std::round(calculated_height);
+  EXPECT_EQ(calculated_height, 1);
+}
 
-// // Test detect method
-// // TEST_F(DetectorTest, DetectMethod) {
-// //     cv::CommandLineParser parser(0, nullptr, "{image|test_image.jpg|}");
+/**
+ * @brief Test case for coordinate transformation
+ * 
+ * This test checks the camera2robot method of HumanAvoidance
+ * to ensure it correctly transforms camera coordinates to robot coordinates.
+ * 
+ * @test
+ * - Loads a test image
+ * - Creates a bounding box
+ * - Calls camera2robot to transform coordinates
+ * - Verifies the size of the returned coordinate vector
+ * - Checks the values of the transformed coordinates
+ */
+TEST_F(HumanAvoidanceTest, TestCoordinate) {
+  cv::Mat frame = cv::imread("/home/tathyab/midterm_703/ex3.jpeg");
+  cv::Rect box = cv::Rect(0, 10, 10, 0);
+  std::vector<float> coord = avoider->camera2robot(1, box, frame);
 
-// //     class MockStreamData : public StreamData {
-// //     public:
-// //         std::string getImage(cv::CommandLineParser parser) override {
-// //             return "test_image.jpg";
-// //         }
+  ASSERT_EQ(coord.size(), 3) << "Coordinate vector should have 3 elements";
 
-// //         cv::Mat ImgProcessor(char mode) override {
-// //             return cv::Mat::ones(640, 640, CV_8UC3);
-// //         }
-// //     };
-
-// //     MockStreamData mockInput;
-// //     detector.detect(parser);
-
-// //     // Verification for integration tests can be added here
-// // }
-
-// // Main function to run all tests
-// // int main(int argc, char** argv) {
-// //     ::testing::InitGoogleTest(&argc, argv);
-// //     return RUN_ALL_TESTS();
-// // }
+  EXPECT_EQ(coord[0], -16.0f);
+  EXPECT_EQ(coord[1], -10.0f);
+  EXPECT_EQ(coord[2], -1.0f);
+}
