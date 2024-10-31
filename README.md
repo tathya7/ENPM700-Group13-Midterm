@@ -1,5 +1,7 @@
 ![CICD Workflow status](https://github.com/mun0404/ENPM700-Group13-Midterm/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
 
+[![codecov](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm/graph/badge.svg?token=2W1XS59EG6)](https://codecov.io/gh/mun0404/ENPM700-Group13-Midterm)
+
 # Human Detection and Localization
 
 ## Authors 
