@@ -1,21 +1,24 @@
 #include "../include/human_avoidance.hpp"
 
+#include <vector>
+
 // Constructor
-HumanAvoidance::HumanAvoidance() 
-    : averageHeight(175) {
-    std::cout << "HumanAvoidance initialized with default values." << std::endl;
+HumanAvoidance::HumanAvoidance() : averageHeight(175) {
+  std::cout << "HumanAvoidance initialized with default values." << std::endl;
 }
 
 // Calculates the distance of a detected human from the camera
 float HumanAvoidance::calculate_distance(int box_h, int frame_h) {
-    int focal_length = 16;        // Assumed focal length in mm
-    int sensor_height = 25;       // Assumed sensor height in mm
+  int focal_length = 16;   // Assumed focal length in mm
+  int sensor_height = 25;  // Assumed sensor height in mm
 
-    double height_mm = (sensor_height * box_h) / frame_h; // Convert pixel height to mm
-    double z = (averageHeight * focal_length) / height_mm; // Calculate distance
-    double z_meters = z / 100;
-    std::cout << "Distance between the robot and the human detected" << z_meters << std::endl;
-    return (z_meters);  // Convert to meters
+  double height_mm =
+      (sensor_height * box_h) / frame_h;  // Convert pixel height to mm
+  double z = (averageHeight * focal_length) / height_mm;  // Calculate distance
+  double z_meters = z / 100;
+  std::cout << "Distance between robot and the human detected" << z_meters
+            << std::endl;
+  return (z_meters);  // Convert to meters
 }
 
 // Transforms detected human coordinates to robot coordinate system
@@ -54,5 +57,4 @@ std::vector<float> HumanAvoidance::camera2robot(float z, cv::Rect box, cv::Mat f
 }
 
 // Destructor
-HumanAvoidance::~HumanAvoidance() {
-}
+HumanAvoidance::~HumanAvoidance() {}
