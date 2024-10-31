@@ -287,12 +287,22 @@ void HumanDetector::detect(std::string &input_source, bool is_test_mode = false)
         cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     }
 
-    std::vector<std::string> classes;
-    std::string class_path = "../../models/coco.names";
-    std::string model_path = "../../models/yolov5s.onnx";
+    // Declare class_path and model_path outside of the if-else block
+    std::string class_path;
+    std::string model_path;
+
+    // Assign values based on whether we're in test mode or not
+    if (is_test_mode) {
+        class_path = "../../models/coco.names";  // Adjust paths for test mode if necessary
+        model_path = "../../models/yolov5s.onnx";
+    } else {
+        class_path = "./models/coco.names";  // Normal mode paths
+        model_path = "./models/yolov5s.onnx";
+    }
 
     // Read class names from the file
     std::ifstream read_input(class_path);
+    std::vector<std::string> classes;
     std::string text;
     while (read_input >> text) {
         getline(read_input, text);
