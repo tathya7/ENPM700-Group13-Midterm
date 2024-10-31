@@ -1,4 +1,5 @@
-[![codecov](https://codecov.io/gh/tathya7/ENPM700-Group13-Midterm/graph/badge.svg?token=8q9D5e03Sl)](https://codecov.io/gh/tathya7/ENPM700-Group13-Midterm)
+![CICD Workflow status](https://github.com/tathya7/ENPM700-Group13-Midterm/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
+
 # Human Detection and Tracking using YOLO
 ### ENPM700 - Mohammed Munawwar and Tathya Bhatt
 
